@@ -1,3 +1,5 @@
+/* eslint-disable keyword-spacing */
+/* eslint-disable indent */
 /* eslint-disable no-unused-vars */
 
 /* ------------------------------------------------------------------------------------------------
@@ -9,11 +11,11 @@ Then, write a function named speaker that takes in a string and a callback funct
 ------------------------------------------------------------------------------------------------ */
 
 export function greeting(message) {
-    // Solution code here...
-};
+  return message.toUpperCase();
+}
 
 export const speaker = (message, callback) => {
-    // Solution code here...
+  return callback(message);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -33,11 +35,16 @@ Return the modified array.
 ------------------------------------------------------------------------------------------------ */
 
 export const addValues = (arr, value) => {
-    // Solution code here...
+  // Solution code here...
+  arr.push(value);
 };
 
 export const addNumbers = (num, arr, times, callback) => {
-    // Solution code here...
+  // Solution code here...
+  for (let i = 0; i < times; i++) {
+    callback(arr, num);
+  }
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -47,19 +54,27 @@ Write a function named removeOne that takes in a number and an array. If the num
 
 Hint: you may want to look into the modulo operation.
 
-Then, write a function named removeElements that takes in an array and a callback. This function should use a for loop to iterate over the array and invoke the callback once for each element in the array.
+Then, write a function named removeElements that takes in an array and a callback. 
+This function should use a for loop to iterate over the array and invoke the callback once for each element in the array.
 
 Return the modified array.
 ------------------------------------------------------------------------------------------------ */
 
-
-
 export const removeOne = (num, arr) => {
-    // Solution code here...
+  // Solution code here...
+  if (num % 3 === 2) {
+    return arr.pop();
+  }
 };
 
 export const removeElements = (arr, callback) => {
-    // Solution code here...
+  // iterate over the array and invoke the callback once for each element in the array
+  // Solution code here...
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+    callback(num, arr);
+  }
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -68,7 +83,9 @@ CHALLENGE 4
 Write a function named removeWithForEach that produces the same output as challenge 3, but uses forEach.
 ------------------------------------------------------------------------------------------------ */
 export const removeWithForEach = (arr, callback) => {
-    // Solution code here...
+  // Solution code here...
+  arr.forEach(num => callback(num, arr));
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -83,7 +100,13 @@ in removeOne directly into this anonymous function.
 ------------------------------------------------------------------------------------------------ */
 
 export const removeWithAnon = (arr) => {
-    // Solution code here...
+  // Solution code here...
+  arr.forEach((num, idx) =>{
+    if (num % 3 === 2) {
+        return arr.pop();
+      }}
+  );
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -100,11 +123,19 @@ The inventory is formatted like this:
     { name: 'blueberries', available: false }
 ]
 
-This function should create another new array (the grocery list) and then use forEach to populate your grocery list based on the store's inventory. If the item is available, add it to your list. Return the final list.
+This function should create another new array (the grocery list) and then use forEach to populate your grocery list based
+on the store's inventory. If the item is available, add it to your list. Return the final list.
 ------------------------------------------------------------------------------------------------ */
 
 export const createList = (arr) => {
-    // Solution code here...
+  // Solution code here...
+  let list = [];
+  arr.forEach(item => {
+    if(item.available === true) {
+        list.push(item.name);
+    }
+  });
+  return list;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -124,5 +155,18 @@ Return the resulting output array.
 ------------------------------------------------------------------------------------------------ */
 
 export const fizzBuzz = (arr) => {
-    // Solution code here...
+  // Solution code here...
+  let arr1 = [];
+  arr.forEach(num => {
+    if(num % 5 === 0 & num % 3 === 0) {
+        arr1.push('Fizz Buzz');
+    } else if (num % 5 === 0) {
+        arr1.push('Buzz');
+    } else if (num % 3 === 0) {
+        arr1.push('Fizz');
+    } else {
+        arr1.push(num);
+    }
+  });
+  return arr1;
 };
